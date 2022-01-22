@@ -1,0 +1,23 @@
+﻿@{
+    ViewData["Title"] = Localizer["Payment Closed"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content">
+    <div class="container">
+        <section class="content">
+            <div class="row">
+                <div class="card-body">
+                    <h2 class="headline text-warning">@Localizer["Payment Closed"]</h2>
+                    <div class="error-content">
+                        <hr />
+                        <h3><i class="fas fa-dollar-sign"></i> @Localizer["Payment process has been completed or canceled."]</h3>
+                        <p>
+                            @Localizer["Please contact the payment provider to re-issue another invoice."]
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

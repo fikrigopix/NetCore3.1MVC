@@ -1,0 +1,38 @@
+﻿@model DFPay.Application.ViewModels.EditRoleViewModel
+
+@using (Html.BeginForm())
+{
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"><i class="ti-user"></i>@Localizer["Manage Role"]</h4>
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group m-b-10">
+                    <div class="row row-space-6">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="control-label">@Localizer[@Html.DisplayNameFor(m => m.Roles)] <span class="text-danger">*</span></label>
+                                @Html.ListBoxFor(model => model.SelectedRoleArray, new MultiSelectList(Model.Roles, "Id", "Name"), new { id = "multiSelectDropDown", multiple = "multiple" })
+                                <input type="hidden" asp-for="@Model.UserId" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">@Localizer["Cancel"]</button>
+                <button type="submit" class="btn btn-primary">@Localizer["Save"]</button>
+            </div>
+        </div>
+    </div>
+}
+
+<script type="text/javascript">
+    $(function () {
+        $("#multiSelectDropDown").chosen({
+            width: "100%"
+        });
+    });
+</script>

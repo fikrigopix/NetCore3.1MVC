@@ -1,0 +1,131 @@
+﻿@model DFPay.Application.ViewModels.InvoiceViewModel
+@{
+    ViewData["Title"] = @Localizer["View Invoice"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">@ViewData["Title"]</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">@Localizer["Home"]</a></li>
+                    <li class="breadcrumb-item"><a asp-controller="Invoice" asp-action="Index">@Localizer["Invoice"]</a></li>
+                    <li class="breadcrumb-item active">@Localizer["View"]</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <div class="container-fluid">
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header card-outline card-primary no-print">
+                            <div class="float-right">
+                                <a href="#" class="btn btn-default" onclick="window.print()"><i class="fas fa-print"></i> <span class="d-none d-sm-inline">@Localizer["Print"]</span></a>
+                            </div>
+                            <p><i class="fas fa-info"></i> @Localizer["This invoice was been sent to client. Click the button on the right to print out the Invoice."]</p>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-8">
+                                    <h3><i class="fas fa-globe"></i> @Localizer["CompanyName"]</h3>
+
+                                </div>
+                                <div class="col-4">
+                                    <div class="float-right">
+                                        <h3>
+                                            @Localizer["Invoice"]
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row invoice-info">
+                                <div class="col-sm-9 invoice-col">
+                                    <address>
+                                        <strong>@Localizer["CompanyName"]</strong><br />
+                                        @Localizer["CompanyAddress1"]<br />
+                                        @Localizer["CompanyAddress2"]<br />
+                                        @Localizer["Phone"]: @Localizer["CompanyNumber"]<br />
+                                        @Localizer["Email"]: @Localizer["CompanyEmail"]
+                                    </address>
+                                </div>
+                                <div class="col-sm-3 invoice-col">
+                                    <b>@Localizer["Invoice #"]:</b> @Model.InvoiceNo<br><br />
+                                    <b>@Localizer["Invoice Date"]:</b> @Model.InvoiceDate.ToString("yyyy-MMM-dd")<br>
+                                    <b>@Localizer["Payment Due"]:</b> @Model.InvoiceDate.AddDays(14).ToString("yyyy - MMM - dd")<br>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="row invoice-info">
+                                <div class="col-sm-8 invoice-col">
+                                    <h5>@Localizer["Bill To"]</h5>
+                                    <address>
+                                        @Model.ClientName<br />
+                                        @Localizer["Email"]: @Model.ClientEmail
+                                    </address>
+                                </div>
+                                <div class="col-sm-4 text-center border rounded align-self-center">
+                                    @Localizer["Amount due"]<br />
+                                    <h2>@Html.DisplayFor(m => m.Amount)</h2>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-12 table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>@Localizer["Description"]</th>
+                                                <th class="text-center">@Localizer["Qty"]</th>
+                                                <th class="text-center">@Localizer["Unit Price"]</th>
+                                                <th class="text-right">@Localizer["Total Price"]</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @{ 
+                                                foreach (var item in Model.InvoiceItems)
+                                                {
+                                                    <tr>
+                                                        <td>@item.Description</td>
+                                                        <td class="text-center">@item.Quantity</td>
+                                                        <td class="text-center">@item.UnitPrice.ToString("C")</td>
+                                                        <td class="text-right">@item.TotalPrice.ToString("C") </td>
+                                                    </tr>
+                                                }
+                                            }
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td></td>
+                                                <td class="text-right" colspan="2"><b>@Localizer["Total"]</b></td>
+                                                <td class="table-bordered text-right"><b>@Html.DisplayFor(m => m.Amount)</b></td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="row mt-3">
+                                <!-- accepted payments column -->
+                                <div class="col-12">
+                                    <div class="float-right">
+                                        <span class="lead">@Localizer["Powered by"]:</span>
+                                        <img src="~/img/credit/rapyd.png" alt="Rapyd">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

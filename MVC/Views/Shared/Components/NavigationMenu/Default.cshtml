@@ -1,0 +1,78 @@
+﻿@model List<DFPay.Application.ViewModels.NavigationMenuViewModel>
+
+<script type="text/javascript">
+    var navigationMenuViewModels =  @Html.Raw(Json.Serialize(Model));
+
+    for (var i = 0; i < navigationMenuViewModels.length; i++) {
+        //NotificationBell
+        if (navigationMenuViewModels[i].name == "Invoice Notification Bell") {
+            isInvoiceNotificationBellAuthorized++;
+        }
+
+        //Dashboard
+        if (navigationMenuViewModels[i].name == "Dashboard") {
+            isViewDashboardAuthorized++;
+        }
+
+        //#region Invoice
+        //Invoice View
+        if (navigationMenuViewModels[i].controllerName == "Invoice" && navigationMenuViewModels[i].actionName == "Index") {
+            isViewInvoiceAuthorized++;
+        }
+        //Invoice ViewDetail
+        if (navigationMenuViewModels[i].controllerName == "Invoice" && navigationMenuViewModels[i].actionName == "View") {
+            isViewDetailInvoiceAuthorized++;
+        }
+        //Invoice Create
+        if (navigationMenuViewModels[i].controllerName == "Invoice" && navigationMenuViewModels[i].actionName == "Create") {
+            isCreateInvoiceAuthorized++;
+        }
+        //Invoice Delete
+        if (navigationMenuViewModels[i].controllerName == "Invoice" && navigationMenuViewModels[i].actionName == "Delete") {
+            isDeleteInvoiceAuthorized++;
+        }
+        //Invoice Resend
+        if (navigationMenuViewModels[i].controllerName == "Invoice" && navigationMenuViewModels[i].actionName == "Resend") {
+            isResendInvoiceAuthorized++;
+        }
+        //#endregion
+
+        //#region AdminUser
+        //AdmiUser View
+        if (navigationMenuViewModels[i].controllerName == "AdminUser" && navigationMenuViewModels[i].actionName == "Index") {
+            isViewAdminUserAuthorized++;
+        }
+        //AdmiUser Create
+        if (navigationMenuViewModels[i].controllerName == "AdminUser" && navigationMenuViewModels[i].actionName == "CreateUser") {
+            isCreateAdminUserAuthorized++;
+        }
+        //AdminUser ManageRole
+        if (navigationMenuViewModels[i].controllerName == "AdminUser" && navigationMenuViewModels[i].actionName == "ManageRole") {
+            isManageRoleAdminUserAuthorized++;
+        }
+        //#endregion
+
+        //#region Role
+        //Role View
+        if (navigationMenuViewModels[i].controllerName == "Role" && navigationMenuViewModels[i].actionName == "Index") {
+            isViewRoleAuthorized++;
+        }
+        //Role ManageRolePermission
+        if (navigationMenuViewModels[i].controllerName == "Role" && navigationMenuViewModels[i].actionName == "ManagePermission") {
+            isManageRolePermissionAuthorized++;
+        }
+        //Role SubmitRolePermission
+        if (navigationMenuViewModels[i].controllerName == "Role" && navigationMenuViewModels[i].actionName == "EditRolePermission") {
+            isSubmitRolePermissionAuthorized++;
+        }
+        //Role CreateRolePermission
+        if (navigationMenuViewModels[i].controllerName == "Role" && navigationMenuViewModels[i].actionName == "CreateRole") {
+            isCreateRolePermissionAuthorized++;
+        }
+        //Role DeleteRolePermission
+        if (navigationMenuViewModels[i].controllerName == "Role" && navigationMenuViewModels[i].actionName == "DeleteRole") {
+            isDeleteRolePermissionAuthorized++;
+        }
+        //#endregion
+    }
+</script>

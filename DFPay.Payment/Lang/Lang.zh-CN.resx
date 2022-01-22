@@ -1,0 +1,558 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Action" xml:space="preserve">
+    <value>行动</value>
+  </data>
+  <data name="Add New" xml:space="preserve">
+    <value>添新</value>
+  </data>
+  <data name="Admin User" xml:space="preserve">
+    <value>管理员用户</value>
+  </data>
+  <data name="All rights reserved" xml:space="preserve">
+    <value>版权所有</value>
+  </data>
+  <data name="All Status" xml:space="preserve">
+    <value>所有状态</value>
+  </data>
+  <data name="All Time" xml:space="preserve">
+    <value>整天</value>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>量</value>
+  </data>
+  <data name="Amount due" xml:space="preserve">
+    <value>应付金额</value>
+  </data>
+  <data name="Apply" xml:space="preserve">
+    <value>应用</value>
+  </data>
+  <data name="April" xml:space="preserve">
+    <value>四月</value>
+  </data>
+  <data name="Are you sure?" xml:space="preserve">
+    <value>你确定吗？</value>
+  </data>
+  <data name="August" xml:space="preserve">
+    <value>八月</value>
+  </data>
+  <data name="Back to Login" xml:space="preserve">
+    <value>回到登入</value>
+  </data>
+  <data name="Bill To" xml:space="preserve">
+    <value>记账到</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="Client Email" xml:space="preserve">
+    <value>客户电邮</value>
+  </data>
+  <data name="Client Name" xml:space="preserve">
+    <value>客户名称</value>
+  </data>
+  <data name="CompanyAddress1" xml:space="preserve">
+    <value>Address #1</value>
+  </data>
+  <data name="CompanyAddress2" xml:space="preserve">
+    <value>Singapore 12345</value>
+  </data>
+  <data name="CompanyEmail" xml:space="preserve">
+    <value>billing@dfpay.com</value>
+  </data>
+  <data name="CompanyName" xml:space="preserve">
+    <value>DF Pay</value>
+  </data>
+  <data name="CompanyNumber" xml:space="preserve">
+    <value>+65 1234 5678</value>
+  </data>
+  <data name="Confirm Password" xml:space="preserve">
+    <value>确认密码</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>创造</value>
+  </data>
+  <data name="Create Admin User" xml:space="preserve">
+    <value>创建管理员用户</value>
+  </data>
+  <data name="Create Invoice" xml:space="preserve">
+    <value>创建发票</value>
+  </data>
+  <data name="Create Role" xml:space="preserve">
+    <value>创建用户权限</value>
+  </data>
+  <data name="Custom Range" xml:space="preserve">
+    <value>自订范围</value>
+  </data>
+  <data name="Dashboard" xml:space="preserve">
+    <value>仪表板</value>
+  </data>
+  <data name="December" xml:space="preserve">
+    <value>十二月</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="Delete successful" xml:space="preserve">
+    <value>删除成功</value>
+  </data>
+  <data name="Deleted" xml:space="preserve">
+    <value>已删除</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>描述</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>电子邮件</value>
+  </data>
+  <data name="Error while deleting" xml:space="preserve">
+    <value>删除时出错</value>
+  </data>
+  <data name="Error while resending invoice" xml:space="preserve">
+    <value>重新发送发票时出错</value>
+  </data>
+  <data name="Existing Password" xml:space="preserve">
+    <value>当前密码</value>
+  </data>
+  <data name="Expired" xml:space="preserve">
+    <value>已过期</value>
+  </data>
+  <data name="Expired Invoices" xml:space="preserve">
+    <value>过期的发票</value>
+  </data>
+  <data name="Failed" xml:space="preserve">
+    <value>失败</value>
+  </data>
+  <data name="Failed while create user" xml:space="preserve">
+    <value>创建用户失败</value>
+  </data>
+  <data name="February" xml:space="preserve">
+    <value>二月</value>
+  </data>
+  <data name="Forgot your password?" xml:space="preserve">
+    <value>忘记密码了吗？</value>
+  </data>
+  <data name="Friday" xml:space="preserve">
+    <value>星期五</value>
+  </data>
+  <data name="Get Admin User" xml:space="preserve">
+    <value>取得管理员用户</value>
+  </data>
+  <data name="Get Invoice" xml:space="preserve">
+    <value>取得发票</value>
+  </data>
+  <data name="Get Role User" xml:space="preserve">
+    <value>取得用户权限</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>主页</value>
+  </data>
+  <data name="I forgot my password" xml:space="preserve">
+    <value>我忘记了我的密码</value>
+  </data>
+  <data name="Invalid Email Address." xml:space="preserve">
+    <value>无效的邮件地址。</value>
+  </data>
+  <data name="Invalid Email or Password" xml:space="preserve">
+    <value>无效的电子邮件或密码</value>
+  </data>
+  <data name="Invalid login attempt." xml:space="preserve">
+    <value>无效的登录尝试。</value>
+  </data>
+  <data name="Invoice" xml:space="preserve">
+    <value>发票</value>
+  </data>
+  <data name="Invoice #" xml:space="preserve">
+    <value>发票编号</value>
+  </data>
+  <data name="Invoice created &amp; emailed to client." xml:space="preserve">
+    <value>发票已创建并通过电子邮件发送给客户。</value>
+  </data>
+  <data name="Invoice Date" xml:space="preserve">
+    <value>发票日期</value>
+  </data>
+  <data name="Invoice No" xml:space="preserve">
+    <value>发票号码</value>
+  </data>
+  <data name="Invoice Notification Bell" xml:space="preserve">
+    <value>发票通知铃</value>
+  </data>
+  <data name="Invoice resend successful" xml:space="preserve">
+    <value>发票重新发送成功</value>
+  </data>
+  <data name="January" xml:space="preserve">
+    <value>一月</value>
+  </data>
+  <data name="July" xml:space="preserve">
+    <value>七月</value>
+  </data>
+  <data name="June" xml:space="preserve">
+    <value>六月</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>语言</value>
+  </data>
+  <data name="Last 30 Days" xml:space="preserve">
+    <value>最近30天</value>
+  </data>
+  <data name="Last 7 Days" xml:space="preserve">
+    <value>最近7天</value>
+  </data>
+  <data name="Last Month" xml:space="preserve">
+    <value>上个月</value>
+  </data>
+  <data name="Log In" xml:space="preserve">
+    <value>登录</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>登出</value>
+  </data>
+  <data name="Manage Permission" xml:space="preserve">
+    <value>管理用户权限</value>
+  </data>
+  <data name="Manage Role" xml:space="preserve">
+    <value>管理用户权限</value>
+  </data>
+  <data name="March" xml:space="preserve">
+    <value>游行</value>
+  </data>
+  <data name="May" xml:space="preserve">
+    <value>可能</value>
+  </data>
+  <data name="Monday" xml:space="preserve">
+    <value>星期一</value>
+  </data>
+  <data name="More info" xml:space="preserve">
+    <value>更多信息</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>名称</value>
+  </data>
+  <data name="New Password" xml:space="preserve">
+    <value>新密码</value>
+  </data>
+  <data name="new success payment" xml:space="preserve">
+    <value>新的成功付款</value>
+  </data>
+  <data name="No new notification" xml:space="preserve">
+    <value>没有新通知</value>
+  </data>
+  <data name="November" xml:space="preserve">
+    <value>十一月</value>
+  </data>
+  <data name="October" xml:space="preserve">
+    <value>十月</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>好</value>
+  </data>
+  <data name="Once deleted, you will not be able to recover" xml:space="preserve">
+    <value>删除后，您将无法恢复</value>
+  </data>
+  <data name="Once resend, the previous email payment link will be invalid" xml:space="preserve">
+    <value>重新发送后，先前的电子邮件付款链接将无效</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>密码</value>
+  </data>
+  <data name="PasswordRequirement" xml:space="preserve">
+    <value>密码长度至少为8个字符，包含一个大写字母，一个数字。</value>
+  </data>
+  <data name="Payment Closed" xml:space="preserve">
+    <value>付款已关闭</value>
+  </data>
+  <data name="Payment Due" xml:space="preserve">
+    <value>到期付款</value>
+  </data>
+  <data name="Payment process has been completed or canceled." xml:space="preserve">
+    <value>付款流程已完成或已取消。</value>
+  </data>
+  <data name="Pending" xml:space="preserve">
+    <value>待定</value>
+  </data>
+  <data name="Pending Invoices" xml:space="preserve">
+    <value>待处理的发票</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>电话</value>
+  </data>
+  <data name="Please contact the admin for support" xml:space="preserve">
+    <value>请与管理员联系以获取支持</value>
+  </data>
+  <data name="Please contact the payment provider to re-issue another invoice." xml:space="preserve">
+    <value>请与付款提供商联系以重新签发另一张发票。</value>
+  </data>
+  <data name="Please try again." xml:space="preserve">
+    <value>请再试一遍。</value>
+  </data>
+  <data name="Powered by" xml:space="preserve">
+    <value>驱动</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>价钱</value>
+  </data>
+  <data name="Print" xml:space="preserve">
+    <value>打印</value>
+  </data>
+  <data name="Qty" xml:space="preserve">
+    <value>数量</value>
+  </data>
+  <data name="Remember Me" xml:space="preserve">
+    <value>记得我</value>
+  </data>
+  <data name="Request new password" xml:space="preserve">
+    <value>需要新密码</value>
+  </data>
+  <data name="Resend" xml:space="preserve">
+    <value>重发</value>
+  </data>
+  <data name="Retype New Password" xml:space="preserve">
+    <value>重新输入新密码</value>
+  </data>
+  <data name="Role" xml:space="preserve">
+    <value>用户权限</value>
+  </data>
+  <data name="Role has been added successfully" xml:space="preserve">
+    <value>用户权限已成功添加</value>
+  </data>
+  <data name="Role Name" xml:space="preserve">
+    <value>用户权限名称</value>
+  </data>
+  <data name="Role permission changed" xml:space="preserve">
+    <value>用户权限已更改</value>
+  </data>
+  <data name="Roles" xml:space="preserve">
+    <value>用户权限</value>
+  </data>
+  <data name="Saturday" xml:space="preserve">
+    <value>星期六</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>搜索</value>
+  </data>
+  <data name="September" xml:space="preserve">
+    <value>九月</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>设定值</value>
+  </data>
+  <data name="Sign In" xml:space="preserve">
+    <value>登入</value>
+  </data>
+  <data name="Sign in to start your session" xml:space="preserve">
+    <value>登录以开始您的会议</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>提交</value>
+  </data>
+  <data name="Submit Permission" xml:space="preserve">
+    <value>提交权限</value>
+  </data>
+  <data name="Success" xml:space="preserve">
+    <value>成功</value>
+  </data>
+  <data name="Success Payment Rate" xml:space="preserve">
+    <value>成功支付率</value>
+  </data>
+  <data name="Sunday" xml:space="preserve">
+    <value>星期日</value>
+  </data>
+  <data name="The password and confirmation password do not match." xml:space="preserve">
+    <value>密码和确认密码不匹配。</value>
+  </data>
+  <data name="The {0} field is required." xml:space="preserve">
+    <value>{0}字段是必填字段。</value>
+  </data>
+  <data name="This invoice was been sent to client. Click the button on the right to print out the Invoice." xml:space="preserve">
+    <value>该发票已发送给客户。单击右侧的按钮以打印出发票。</value>
+  </data>
+  <data name="This Month" xml:space="preserve">
+    <value>这个月</value>
+  </data>
+  <data name="Thursday" xml:space="preserve">
+    <value>星期四</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>今天</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>总</value>
+  </data>
+  <data name="Total Invoices" xml:space="preserve">
+    <value>总发票</value>
+  </data>
+  <data name="Total Price" xml:space="preserve">
+    <value>总价</value>
+  </data>
+  <data name="Tuesday" xml:space="preserve">
+    <value>星期二</value>
+  </data>
+  <data name="Unit Price" xml:space="preserve">
+    <value>单价</value>
+  </data>
+  <data name="Update Password" xml:space="preserve">
+    <value>更新密码</value>
+  </data>
+  <data name="User Account" xml:space="preserve">
+    <value>用户帐号</value>
+  </data>
+  <data name="User created successfully." xml:space="preserve">
+    <value>用户创建成功。</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>版本</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>视图</value>
+  </data>
+  <data name="View Admin User" xml:space="preserve">
+    <value>查看管理员用户</value>
+  </data>
+  <data name="View Detail" xml:space="preserve">
+    <value>查看详情</value>
+  </data>
+  <data name="View Invoice" xml:space="preserve">
+    <value>查看发票</value>
+  </data>
+  <data name="View Role" xml:space="preserve">
+    <value>查看用户权限</value>
+  </data>
+  <data name="Wednesday" xml:space="preserve">
+    <value>星期三</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>欢迎</value>
+  </data>
+  <data name="Yesterday" xml:space="preserve">
+    <value>昨天</value>
+  </data>
+  <data name="{0} length can not be more than {1}." xml:space="preserve">
+    <value>{0}的长度不能超过{1}。</value>
+  </data>
+  <data name="{0} must be greater than 0." xml:space="preserve">
+    <value>{0}必须大于0。</value>
+  </data>
+  <data name="{0} must be greater than {1} and less than {2}" xml:space="preserve">
+    <value>{0}必须大于{1}并且小于{2}</value>
+  </data>
+</root>

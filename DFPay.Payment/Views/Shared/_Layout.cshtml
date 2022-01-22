@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+
+    <title>@ViewData["Title"] - DF Pay</title>
+    <partial name="_Styles" />
+    <partial name="_Scripts" />
+</head>
+<body class="hold-transition layout-top-nav pace-primary">
+    <div class="wrapper">
+        <partial name="_TopNavigation" />
+        <div class="content-wrapper">
+            @RenderBody()
+        </div>
+        <partial name="_Footer" />
+    </div>
+    <partial name="_ValidationScriptsPartial" />
+
+</body>
+</html>

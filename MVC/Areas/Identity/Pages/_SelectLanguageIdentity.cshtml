@@ -1,0 +1,21 @@
+﻿@using Microsoft.AspNetCore.Builder
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.Extensions.Options
+
+@inject IOptions<RequestLocalizationOptions> LocOptions
+@using DFPay.MVC.Lang
+@inject LangService SharedLocalizer
+@{
+    var requestCulture = Context.Features.Get<IRequestCultureFeature>();
+    var cultureItems = LocOptions.Value.SupportedUICultures
+        .Select(c => new SelectListItem { Value = c.Name, Text = c.DisplayName })
+        .ToList();
+}
+
+<form class="form-inline" id="selectLanguage" asp-page-handler="SetLanguage" asp-route-returnUrl="@Context.Request.Path" method="post" role="form">
+    <div class="form-group">
+        <label for="culture" class="mr-sm-2">@Localizer["Language"]</label>
+        <select id="culture" onchange="this.form.submit();" class="form-control" name="culture" asp-for="@requestCulture.RequestCulture.UICulture.Name" asp-items="cultureItems"></select>
+    </div>
+</form>

@@ -1,0 +1,75 @@
+﻿@model IList<DFPay.Application.ViewModels.JsTreeViewModel>
+@{
+    ViewData["Title"] = Localizer["Manage Permission"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/plugins/jsTree/themes/default/style.css" rel="stylesheet" />
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">@ViewData["Title"]</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">@Localizer["Home"]</a></li>
+                    <li class="breadcrumb-item"><a asp-controller="Role" asp-action="Index">@Localizer["Role"]</a></li>
+                    <li class="breadcrumb-item active">@ViewData["Title"]</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <div class="container-fluid">
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="m-0 text-dark">@ViewBag.RoleName</h4>
+                        </div>
+                        <form asp-action="EditRolePermission">
+                            <div class="card-body">
+                                <div id="jstree"></div>
+                            </div>
+                            <div class="card-footer">
+                                <input type="hidden" name="RoleId" id="RoleId" value="@ViewBag.RoleId" />
+                                <input type="hidden" name="selectedIds" id="selectedIds" />
+                                <button class="btn btn-primary" type="submit" id="btnSubmit">@Localizer["Submit"]</button>
+                                <a asp-controller="Role" asp-action="Index" class="btn btn-default float-right">@Localizer["Cancel"]</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+<script src="~/plugins/jsTree/jstree.js"></script>
+<script type="text/javascript">
+    $('#jstree').jstree({
+        "core": {
+            "data": @Html.Raw(ViewBag.Json),
+            "themes": {
+                "variant": "large"
+            }
+        },
+        "plugins": ["wholerow", "checkbox"]
+    });
+
+    $('#jstree').on('changed.jstree', function (e, data) {
+        var i, j, selectedIds = [];
+        for (i = 0, j = data.selected.length; i < j; i++) {
+            selectedIds.push(data.instance.get_node(data.selected[i]).id);
+        }
+        $('#selectedIds').val(selectedIds.join(','));
+    })
+    // create the instance
+    .jstree();
+
+    isSubmitRolePermissionAuthorized > 0 ? $("#btnSubmit").show() : $("#btnSubmit").hide();
+</script>

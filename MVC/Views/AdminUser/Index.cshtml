@@ -1,0 +1,134 @@
+﻿@{
+    ViewData["Title"] = Localizer["Admin User"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">@ViewData["Title"]</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">@Localizer["Home"]</a></li>
+                    <li class="breadcrumb-item active">@ViewData["Title"]</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <div class="container-fluid">
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="float-right">
+                                <a asp-action="CreateUser" asp-controller="AdminUser" class="btn btn-primary" id="CreateAdminUser"><i class="fas fa-plus"></i> <span class="d-none d-sm-inline">@Localizer["Add New"]</span></a>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table id="datatable" class="table table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>@Localizer["Email"]</th>
+                                            <th>@Localizer["Role"]</th>
+                                            <th>@Localizer["Action"]</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>@Localizer["Email"]</th>
+                                            <th>@Localizer["Role"]</th>
+                                            <th>@Localizer["Action"]</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+<div class="modal fade" id="dialog-edit"></div>
+
+<script type="text/javascript">
+    var oTable = null;
+    var dtlang = '';
+    isCreateAdminUserAuthorized > 0 ? $("#CreateAdminUser").show() : $("#CreateAdminUser").hide();
+
+    $(document).ready(function () {
+        cultureInfo = '@System.Globalization.CultureInfo.CurrentCulture.Name';
+        if (cultureInfo == 'zh-CN') {
+            dtlang = ChineseJson;
+        } else if (cultureInfo == 'en-US') {
+            dtlang = EnglishJson;
+        }
+
+        oTable = $("#datatable").DataTable(
+            {
+                dom: "<'row'<'col-sm-1'f><'col-sm-2 offset-sm-9 text-right'l>>" +
+                    "<'row'<'col-sm-12'tr>>" +
+                    "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+                "responsive": true,
+                "autoWidth": false,
+                "language": dtlang,
+                "ajax": {
+                    "type": "GET",
+                    "url": "/AdminUser/GetAdminUser",
+                    "data": function (data) {
+                        return data = data;
+                    }
+                },
+                "columns": [
+                    {
+                        "data": "email"
+                    },
+                    {
+                        sortable: false,
+                        "data": "roleNames"
+                    },
+                    {
+                        sortable: false,
+                        "data": "null",
+                        render: function (data, type, full, row) {
+                            if (true) {
+                                var html = '<div class="btn-group btn-group-sm">';
+                                if (isManageRoleAdminUserAuthorized > 0) {
+                                    html += '<a href="#" onclick=manageRole("' + full.userId + '") class="btn btn-dark text-white" title="Manage Role"><i class="fas fa-user-cog"></i> ' + '@Localizer["Manage Role"]' + '</a>';
+                                }
+                                return html += "</div>";
+                            } else {
+                                return '';
+                            }
+                        }
+                    }
+                ]
+            });
+    });
+
+    function manageRole(userId) {
+            $.ajax({
+                method: 'GET',
+                url: "/AdminUser/ManageRole?userId=" + userId,
+                success: function (data, status, xhr) {
+                    if (data === "timeout") {
+                        location.reload();
+                    }
+                    $mymodal = $("#dialog-edit");
+                    $mymodal.html(data);
+                    $mymodal.modal("show");
+                },
+                error: function (data) {
+                    console.error(data);
+                }
+            });
+        }
+</script>

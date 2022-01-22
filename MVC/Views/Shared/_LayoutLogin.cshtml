@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+
+    <title>@ViewData["Title"] - DF Pay</title>
+    <partial name="_Styles" />
+</head>
+<body class="hold-transition login-page">
+    @RenderBody()
+    <partial name="_Scripts" />
+    <partial name="_ValidationScriptsPartial" />
+</body>
+</html>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        if('@TempData["ErrorMessage"]' != "" || '@TempData["ErrorTitle"]' != ""){
+           toastr.error("@TempData["ErrorMessage"]", "@TempData["ErrorTitle"]");
+        }
+        if('@TempData["WarningMessage"]' != "" || '@TempData["WarningTitle"]' != ""){
+           toastr.warning("@TempData["WarningMessage"]", "@TempData["WarningTitle"]");
+        }
+        if('@TempData["InfoMessage"]' != "" || '@TempData["InfoTitle"]' != ""){
+            toastr.info("@TempData["InfoMessage"]", "@TempData["InfoTitle"]");
+        }
+        if('@TempData["SuccessMessage"]' != "" || '@TempData["SuccessTitle"]' != ""){
+            toastr.success("@TempData["SuccessMessage"]", "@TempData["SuccessTitle"]");
+        }
+    });
+</script> 

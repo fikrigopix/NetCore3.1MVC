@@ -1,0 +1,33 @@
+﻿@{
+    //ViewData["Title"] = Localizer["Privacy Policy"];
+    ViewData["Title"] = "Privacy Policy";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                @*<h1 class="m-0 text-dark">@Localizer[ViewData["Title"].ToString()]</h1>*@
+                <h1 class="m-0 text-dark">@ViewData["Title"].ToString()</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    @*<li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">@Localizer["Home"]</a></li>
+        <li class="breadcrumb-item active">@Localizer[ViewData["Title"].ToString()]</li>*@
+                    <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li class="breadcrumb-item active">@ViewData["Title"].ToString()</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content">
+    <div class="container-fluid">
+        <!-- Main content -->
+        <section class="content">
+            @*<p>@Localizer["Use this page to detail your site's privacy policy."]</p>*@
+            <p>Use this page to detail your site's privacy policy.</p>
+        </section>
+    </div>
+</div>

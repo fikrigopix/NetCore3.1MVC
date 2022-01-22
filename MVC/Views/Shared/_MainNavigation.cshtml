@@ -1,0 +1,78 @@
+﻿<!-- Main Sidebar Container -->
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a asp-controller="Home" asp-action="Index" class="brand-link">
+        @*<img src="~/img/AdminLTELogo.png" alt="Logo" class="brand-image img-circle elevation-3" style="opacity: .8">             Temp Hide *@
+        <span class="brand-text font-weight-light">DF Pay</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        @if (User.Identity.IsAuthenticated)
+        {
+            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                <div class="image">
+                    <a asp-controller="Account" asp-action="Index" class="d-block"><img src="~/img/user.png" class="img-circle elevation-2" alt="User Image"></a>
+                </div>
+                <div class="info">
+                    <a asp-controller="Account" asp-action="Index" class="d-block">@User.Identity.Name</a>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                <div class="info">
+                    <a href="#" class="d-block">Hi, Visitor</a>
+                </div>
+            </div>
+        }
+
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <li class="nav-item " id="DashboardMenu">
+                    <a asp-controller="Home" asp-action="Index" class="nav-link @Url.MakeActiveClass("Home","Index")">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>
+                            @Localizer["Dashboard"]
+                            @*<span class="right badge badge-light">1</span>*@
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item " id="InvoiceMenu">
+                    <a asp-controller="Invoice" asp-action="Index" class="nav-link @Url.MakeActiveClass("Invoice", "Index")">
+                        <i class="nav-icon fas fa-book"></i>
+                        <p>
+                            @Localizer["Invoice"]
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item " id="AdminUserMenu">
+                    <a asp-controller="AdminUser" asp-action="Index" class="nav-link @Url.MakeActiveClass("AdminUser", "Index")">
+                        <i class="nav-icon fas fa-address-card"></i>
+                        <p>
+                            @Localizer["Admin User"]
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item " id="RoleMenu">
+                    <a asp-controller="Role" asp-action="Index" class="nav-link @Url.MakeActiveClass("Role", "Index")">
+                        <i class="nav-icon fas fa-user-tag"></i>
+                        <p>
+                            @Localizer["Role"]
+                        </p>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+</aside>
+<script type="text/javascript">
+    isViewDashboardAuthorized > 0 ? $("#DashboardMenu").show() : $("#DashboardMenu").hide();
+    isViewInvoiceAuthorized > 0 ? $("#InvoiceMenu").show() : $("#InvoiceMenu").hide();
+    isViewAdminUserAuthorized > 0 ? $("#AdminUserMenu").show() : $("#AdminUserMenu").hide();
+    isViewRoleAuthorized > 0 ? $("#RoleMenu").show() : $("#RoleMenu").hide();
+</script>

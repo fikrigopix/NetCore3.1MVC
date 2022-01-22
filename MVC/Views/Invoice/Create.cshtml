@@ -1,0 +1,341 @@
+﻿@model DFPay.Application.ViewModels.InvoiceViewModel
+@{
+    ViewData["Title"] = Localizer["Create Invoice"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">@ViewData["Title"]</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">@Localizer["Home"]</a></li>
+                    <li class="breadcrumb-item"><a asp-controller="Invoice" asp-action="Index">@Localizer["Invoice"]</a></li>
+                    <li class="breadcrumb-item active">@Localizer["Create"]</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <div class="container-fluid">
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <form method="post" id="createInvoice">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <h3><i class="fas fa-globe"></i> @Localizer["CompanyName"]</h3>
+
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="float-right">
+                                            <h3>
+                                                @Localizer["Invoice"]
+                                            </h3>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row invoice-info">
+                                    <div class="col-sm-8 invoice-col">
+                                        <address>
+                                            <strong>@Localizer["CompanyName"]</strong><br />
+                                            @Localizer["CompanyAddress1"]<br />
+                                            @Localizer["CompanyAddress2"]<br />
+                                            Phone: @Localizer["CompanyNumber"]<br />
+                                            Email: @Localizer["CompanyEmail"]
+                                        </address>
+                                    </div>
+                                    <div class="col-sm-4 invoice-col">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">@Localizer["Invoice #"]</span>
+                                            </div>
+                                            <input asp-for="InvoiceNo" class="form-control" autocomplete="off" />
+                                        </div>
+                                        <span asp-validation-for="InvoiceNo" class="text-danger small"></span>
+                                        <div class="mb-3"></div>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">@Localizer["Invoice Date"]</span>
+                                            </div>
+                                            <input asp-for="InvoiceDate" class="form-control" />
+                                        </div>
+                                        <span asp-validation-for="InvoiceDate" class="text-danger small"></span>
+                                    </div>
+                                </div>
+
+                                <hr />
+
+                                <div class="row invoice-info">
+                                    <div class="col-sm-3 invoice-col">
+                                        <h5>@Localizer["Bill To"]</h5>
+                                        <address>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">@Localizer["Client Name"]</span>
+                                                </div>
+                                                <input asp-for="ClientName" class="form-control" autocomplete="off" />
+                                            </div>
+                                            <span asp-validation-for="ClientName" class="text-danger small"></span>
+                                            <div class="mb-3"></div>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">@Localizer["Client Email"]</span>
+                                                </div>
+                                                <input asp-for="ClientEmail" class="form-control" autocomplete="off" />
+                                            </div>
+                                            <span asp-validation-for="ClientEmail" class="text-danger small"></span>
+                                            <div class="mb-3"></div>
+                                        </address>
+                                    </div>
+
+                                    <div class="col-sm-5 invoice-col">
+                                    </div>
+                                    <div class="col-sm-4 text-center border rounded align-self-center">
+                                        @Localizer["Amount due"]<br />
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">$</span>
+                                            </div>
+                                            <input asp-for="Amount" type="number" class="form-control" readonly autocomplete="off" value="1.00" />
+                                        </div>
+                                        @*<span asp-validation-for="Amount" class="text-danger small"></span>*@
+                                        <span id="amount-error-message" class="text-danger" style="display:none"></span>
+                                        <div class="mb-3"></div>
+                                    </div>
+                                </div>
+                                <hr />
+                                <div class="row invoice-info">
+                                    <div class="col-sm-12 invoice-col">
+                                        <div class="float-right">
+                                            <a class="btn btn-primary text-white" onclick="addItem();"><i class="fas fa-plus"></i> <span class="d-none d-sm-inline">@Localizer["Add Item"]</span></a>
+                                        </div>
+                                        <div class="float-left">
+                                            <h3>@Localizer["List of Items"]</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row invoice-info">
+                                    <div class="col-sm-12 invoice-col">
+                                        <div class="table-responsive">
+                                            <table id="tableItem" class="table table-bordered table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-center">@Localizer["Description"]</th>
+                                                        <th class="text-center">@Localizer["Quantity"]</th>
+                                                        <th class="text-center">@Localizer["Unit Price"]</th>
+                                                        <th class="text-center">@Localizer["Total Price"]</th>
+                                                        <th class="text-center">@Localizer["Action"]</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tbodyItem">
+                                                    <tr id="rowItems-0">
+                                                        <td>
+                                                            <input type="text" id="InvoiceItemsDescription-0" name="InvoiceItemsDescription" class="form-control" onchange="InvoiceItemsDescriptionValidation(0);" autocomplete="off" maxlength="200" placeholder="@Localizer["Item Description"]" value="" />
+                                                            <label id="lblErrorInvoiceItemsDescription-0" class="text-red" style="display:none"></label>
+                                                        </td>
+                                                        <td>
+                                                            <input type="number" id="InvoiceItemsQuantity-0" name="InvoiceItemsQuantity" class="form-control text-center" onchange="InvoiceItemsQuantityValidation(0);" autocomplete="off" min="1" value="1" />
+                                                            <label id="lblErrorInvoiceItemsQuantity-0" class="text-red" style="display:none"></label>
+                                                        </td>
+                                                        <td>                                                            
+                                                            <div class="input-group-prepend"><span class="input-group-text">$</span><input type="number" id="InvoiceItemsUnitPrice-0" name="InvoiceItemsUnitPrice" class="form-control" onchange="InvoiceItemsUnitPriceValidation(0);" autocomplete="off" min="0.01" value="1.00" formnovalidate="formnovalidate" /></div>
+                                                            <label id="lblErrorInvoiceItemsUnitPrice-0" class="text-red" style="display:none"></label>
+                                                        </td>
+                                                        <td>
+                                                            <div class="input-group-prepend"><span class="input-group-text">$</span><input type="number" id="InvoiceItemsTotalPrice-0" name="InvoiceItemsTotalPrice" class="form-control" autocomplete="off" value="1.0" readonly /></div>
+                                                            <label id="lblErrorInvoiceItemsTotalPrice-0" class="text-red" style="display:none"></label>
+                                                        </td>
+                                                        <td>
+                                                            <div class="col text-center">
+                                                                <a class="btn btn-danger text-white" onclick="fnClickRemoveRow(0);" title="@Localizer["Delete"]"><i class="fas fa-trash"></i></a>
+                                                            </div>                                                            
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button class="btn btn-primary" type="submit" id="btnSubmit">@Localizer["Submit"]</button>
+                                <a asp-controller="Invoice" asp-action="Index" class="btn btn-default float-right">@Localizer["Cancel"]</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var giCount = 1;
+    var maxAmount = 999999999999999.99;
+    var tableItem = null;
+
+    $(document).ready(function () {
+        tableItem = $('#tableItem').DataTable({
+            searching: false,
+            paging: false,
+            info: false,
+            ordering: false
+        });
+    });
+        
+    function addItem() {
+        if (isItemsValid()) {
+            var addId = $('#tableItem').dataTable().fnAddData([
+                '<input type="text" id="InvoiceItemsDescription-' + giCount + '" name="InvoiceItemsDescription" class="form-control" onchange="InvoiceItemsDescriptionValidation(' + giCount + ');" autocomplete="off" placeholder="Item Description" value="" />'
+                    + '<label id="lblErrorInvoiceItemsDescription-' + giCount + '" class="text-red" style="display:none"></label>',
+                '<input type="number" id="InvoiceItemsQuantity-' + giCount + '" name="InvoiceItemsQuantity" class="form-control text-center" onchange="InvoiceItemsQuantityValidation(' + giCount + ');" autocomplete="off" min="1" value="1" />'
+                    + '<label id="lblErrorInvoiceItemsQuantity-' + giCount + '" class="text-red" style="display:none"></label>',
+                '<div class="input-group-prepend"><span class="input-group-text">$</span><input type="number" id="InvoiceItemsUnitPrice-' + giCount + '" name="InvoiceItemsUnitPrice" class="form-control" onchange="InvoiceItemsUnitPriceValidation(' + giCount + ');" autocomplete="off" min="0.01" value="1.00" formnovalidate="formnovalidate" /></div>'
+                    + '<label id="lblErrorInvoiceItemsUnitPrice-' + giCount + '" class="text-red" style="display:none"></label>',
+                '<div class="input-group-prepend"><span class="input-group-text">$</span><input type="number" id="InvoiceItemsTotalPrice-' + giCount + '" name="InvoiceItemsTotalPrice" class="form-control" readonly  autocomplete="off" value="1.00" /></div>'
+                    + '<label id="lblErrorInvoiceItemsTotalPrice-' + giCount + '" class="text-red" style="display:none"></label>',
+                '<div class="col text-center"><a class="btn btn-danger text-white" onclick="fnClickRemoveRow(' + giCount + ');" title="@Localizer["Delete"]"><i class="fas fa-trash"></i></a></div>'
+            ]);
+            var theNode = $('#tableItem').dataTable().fnSettings().aoData[addId[0]].nTr;
+            theNode.setAttribute('id', 'rowItems-' + giCount);
+            giCount++;
+            calculateAmount();
+        } else {
+            toastr.error('@Localizer["Can not add new item"]');
+        }
+    }
+
+    function fnClickRemoveRow(elmt) {
+        var descriptions = document.getElementsByName('InvoiceItemsDescription');
+        if (descriptions.length > 1) {
+            tableItem.row('#rowItems-' + elmt).remove().draw();
+            calculateAmount();
+        } else {
+            toastr.error('@Localizer["Can not delete the item"]');
+        }
+    }
+
+    function InvoiceItemsDescriptionValidation(idx) {
+        var elmnt = document.getElementById('InvoiceItemsDescription-' + idx);
+        if (elmnt.value.trim().length < 1) {
+            $('#lblErrorInvoiceItemsDescription-' + idx).text("@Localizer["The Description field is required."]");
+            $('#lblErrorInvoiceItemsDescription-' + idx).show();
+            return false;
+        }
+        else if (elmnt.value.trim().length > 200) {
+            $('#lblErrorInvoiceItemsDescription-' + idx).text("@Localizer["Description length can not be more than 200."]");
+            $('#lblErrorInvoiceItemsDescription-' + idx).show();
+            return false;
+        } else {
+            $('#lblErrorInvoiceItemsDescription-' + idx).hide();
+            return true;
+        }
+    }
+
+    function InvoiceItemsQuantityValidation(idx) {
+        $('#amount-error-message').hide();
+        var elmnt = document.getElementById('InvoiceItemsQuantity-' + idx);
+        var numInt = parseInt($('#InvoiceItemsQuantity-' + idx).val());
+        elmnt.value = numInt;
+
+        if (elmnt.value < 1) {
+            $('#lblErrorInvoiceItemsQuantity-' + idx).text("@Localizer["Quantity must be greater than 0."]");
+            $('#lblErrorInvoiceItemsQuantity-' + idx).show();
+            return false;
+        }
+        else {
+            var totalPrice = elmnt.value * $('#InvoiceItemsUnitPrice-' + idx).val();
+            $('#InvoiceItemsTotalPrice-' + idx).val(totalPrice.toFixed(2));
+            if (calculateAmount() > maxAmount) {
+                $('#lblErrorInvoiceItemsQuantity-' + idx).text("@Localizer["Quantity is too much."]");
+                $('#lblErrorInvoiceItemsQuantity-' + idx).show();
+
+                $('#amount-error-message').show();
+                $('#amount-error-message').text("@Localizer["Amount is too much."]");
+                return false;
+            } else {
+                $('#lblErrorInvoiceItemsQuantity-' + idx).hide();
+                $('#lblErrorInvoiceItemsUnitPrice-' + idx).hide();
+                return true;
+            }
+        }
+    }
+
+    function InvoiceItemsUnitPriceValidation(idx) {
+        $('#amount-error-message').hide();
+        var elmnt = document.getElementById('InvoiceItemsUnitPrice-' + idx);
+        if (elmnt.value < 0.01) {
+            $('#lblErrorInvoiceItemsUnitPrice-' + idx).text("@Localizer["Unit Price must be greater than 0"]");
+            $('#lblErrorInvoiceItemsUnitPrice-' + idx).show();
+            return false;
+        }
+        else {
+            var num = parseFloat($('#InvoiceItemsUnitPrice-' + idx).val());
+            var cleanNum = num.toFixed(2);
+            $('#InvoiceItemsUnitPrice-' + idx).val(cleanNum);
+            $('#InvoiceItemsTotalPrice-' + idx).val((elmnt.value * $('#InvoiceItemsQuantity-' + idx).val()).toFixed(2));
+            if (calculateAmount() > maxAmount) {
+                $('#lblErrorInvoiceItemsUnitPrice-' + idx).text("@Localizer["Unit Price is too much"]");
+                $('#lblErrorInvoiceItemsUnitPrice-' + idx).show();
+
+                $('#amount-error-message').show();
+                $('#amount-error-message').text("@Localizer["Amount is too much."]");
+                return false;
+            } else {
+                $('#lblErrorInvoiceItemsUnitPrice-' + idx).hide();
+                $('#lblErrorInvoiceItemsQuantity-' + idx).hide();
+                return true;
+            }
+        }
+    }
+
+    function calculateAmount() {
+        var totalAmount = 0;
+        var allTotalPrice = document.getElementsByName('InvoiceItemsTotalPrice');
+        if (allTotalPrice.length > 0) {
+            for (var i = 0; i < allTotalPrice.length; i++) {
+                totalAmount = totalAmount + parseFloat(allTotalPrice[i].value);
+            }
+            totalAmount.toFixed(2);
+        }
+        $('#Amount').val(totalAmount.toFixed(2));
+        return totalAmount.toFixed(2);
+    }
+
+    function isItemsValid() {
+        var isValid = true;
+        var unitPrices = document.getElementsByName('InvoiceItemsUnitPrice');
+        for (var i = 0; i < unitPrices.length; i++) {
+            var idx = unitPrices[i].id.split("-")[1];
+            if (!InvoiceItemsDescriptionValidation(idx) || !InvoiceItemsQuantityValidation(idx) || !InvoiceItemsUnitPriceValidation(idx)) {
+                isValid = false;
+                break;
+            }
+        }
+        return isValid;
+    }
+
+    $("#createInvoice").submit(function () {
+        var items = document.getElementsByName('InvoiceItemsDescription');
+        if (items.length > 0) {
+            if (isItemsValid()) {
+                return true;
+            } else {
+                toastr.error('@Localizer["Failed, new invoice data is not valid."]');
+                return false;
+            }
+        } else {
+            return false
+        }
+    });
+</script>

@@ -1,0 +1,17 @@
+﻿@{
+    @using Microsoft.Extensions.Configuration;
+    @inject IConfiguration Configuration;
+
+    var hostName = Context.Request.Host.Value;
+    var hostName1 = Configuration.GetSection("Multitenant").GetSection("Web1").GetValue<string>("Hostname");
+    var hostName2 = Configuration.GetSection("Multitenant").GetSection("Web2").GetValue<string>("Hostname");
+
+    if (hostName == hostName1)
+    {
+        Layout = "_Layout";
+    }
+    else if (hostName == hostName2)
+    {
+        Layout = "_Layout2";
+    }
+}

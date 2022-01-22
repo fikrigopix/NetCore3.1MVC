@@ -1,0 +1,167 @@
+﻿@{
+    ViewData["Title"] = Localizer["Role"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">@ViewData["Title"]</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">@Localizer["Home"]</a></li>
+                    <li class="breadcrumb-item active">@ViewData["Title"]</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <div class="container-fluid">
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="float-right">
+                                <a href="#" onclick="createRole()" class="btn btn-primary" id="CreateRole"><i class="fas fa-plus"></i> <span class="d-none d-sm-inline">@Localizer["Add New"]</span></a>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table id="datatable" class="table table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>@Localizer["Role"]</th>
+                                            <th>@Localizer["Admin User"]</th>
+                                            <th>@Localizer["Action"]</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>@Localizer["Role"]</th>
+                                            <th>@Localizer["Admin User"]</th>
+                                            <th>@Localizer["Action"]</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+<div class="modal fade" id="dialog-edit"></div>
+
+<script type="text/javascript">
+    var oTable = null;
+    var dtlang = '';
+    isCreateRolePermissionAuthorized > 0 ? $("#CreateRole").show() : $("#CreateRole").hide();
+
+    $(document).ready(function () {
+        cultureInfo = '@System.Globalization.CultureInfo.CurrentCulture.Name';
+        if (cultureInfo == 'zh-CN') {
+            dtlang = ChineseJson;
+        } else if (cultureInfo == 'en-US') {
+            dtlang = EnglishJson;
+        }
+
+        oTable = $("#datatable").DataTable(
+            {
+                dom: "<'row'<'col-sm-1'f><'col-sm-2 offset-sm-9 text-right'l>>" +
+                    "<'row'<'col-sm-12'tr>>" +
+                    "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+                "responsive": true,
+                "autoWidth": false,
+                "language": dtlang,
+                "ajax": {
+                    "type": "GET",
+                    "url": "/Role/GetRoleUser",
+                    "data": function (data) {
+                        return data = data;
+                    }
+                },
+                "columns": [
+                    {
+                        "data": "roleName"
+                    },
+                    {
+                        sortable: false,
+                        "data": "emails"
+                    },
+                    {
+                        sortable: false,
+                        "data": "null",
+                        render: function (data, type, full, row) {
+                            if (true) {
+                                var html = '<div class="btn-group btn-group-sm">';
+                                if (isManageRolePermissionAuthorized > 0) {
+                                html += '<a href="/Role/ManagePermission?roleId=' + full.roleId + '&roleName=' + full.roleName + '" class="btn btn-dark text-white" title="Manage Permission"><i class="fas fa-user-cog"></i> @Localizer["Manage Permission"] </a>';
+                            }
+                            if (isDeleteRolePermissionAuthorized > 0) {
+                                html += '<a href="#" onclick=Delete("/Role/DeleteRole?roleId=' + full.roleId + '") class="btn btn-danger" title="Delete"><i class="fas fa-trash"></i> @Localizer["Delete"]</a>';
+                            }
+                                return html += "</div>";
+                            } else {
+                                return '';
+                            }
+                        }
+                    }
+                ]
+            });
+    });
+
+    function createRole() {
+        $.ajax({
+            method: 'GET',
+            url: "/Role/CreateRole",
+            success: function (data, status, xhr) {
+                $mymodal = $("#dialog-edit");
+                $mymodal.html(data);
+                $mymodal.modal("show");
+            },
+            error: function (data) {
+                console.error(data);
+            }
+        });
+    }
+
+    function Delete(url) {
+        Swal.fire({
+            title: '@Localizer["Are you sure?"]',
+            text: '@Localizer["Once deleted, you will not be able to recover"]',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '@Localizer["OK"]',
+            cancelButtonText: '@Localizer["Cancel"]'
+        }).then((result) => {
+            if (result.value) {
+                $.ajax({
+                    type: "DELETE",
+                    url: url,
+                    success: function (data) {
+                        if (data.success) {
+                            toastr.success(data.message);
+                        }
+                        else {
+                            if (data.message != null) {
+                                toastr.error(data.message);
+                            } else {
+                                toastr.error(Localizer["Please contact the admin for support."], @Localizer["Failed"]);
+                            }
+                        }
+                        oTable.ajax.reload();
+                    }
+                });
+            }
+        })
+    }
+</script>

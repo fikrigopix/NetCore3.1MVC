@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script type="text/javascript">
+        //NotificationBell
+        var isInvoiceNotificationBellAuthorized = 0;
+        //Dashboard
+        var isViewDashboardAuthorized = 0;
+        //Invoice
+        var isViewInvoiceAuthorized = 0;
+        var isViewDetailInvoiceAuthorized = 0;
+        var isCreateInvoiceAuthorized = 0;
+        var isDeleteInvoiceAuthorized = 0;
+        var isResendInvoiceAuthorized = 0;
+        //AdminUser
+        var isViewAdminUserAuthorized = 0;
+        var isCreateAdminUserAuthorized = 0;
+        var isManageRoleAdminUserAuthorized = 0;
+        //Role
+        var isViewRoleAuthorized = 0;
+        var isManageRolePermissionAuthorized = 0;
+        var isSubmitRolePermissionAuthorized = 0;
+        var isCreateRolePermissionAuthorized = 0;
+        var isDeleteRolePermissionAuthorized = 0;
+    </script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+
+    <title>@ViewData["Title"] - DF Pay 2</title>
+    <partial name="_Styles" />
+    <partial name="_Scripts" />
+</head>
+<body class="hold-transition sidebar-mini pace-primary">
+    <div class="wrapper">
+        <partial name="_TopNavigation" />
+        <partial name="_MainNavigation" />
+        <div class="content-wrapper">
+            @RenderBody()
+        </div>
+        <partial name="_Footer" />
+    </div>
+    <partial name="_ValidationScriptsPartial" />
+
+    <script type="text/javascript">
+        window.onload = function () {
+            RefreshBadgeBell();
+        };
+    </script>
+</body>
+</html>
